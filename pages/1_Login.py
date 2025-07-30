@@ -35,7 +35,7 @@ if st.button(auth_mode):
             profile = supabase.table("users").select("*").eq("id", uid).single().execute()
             if profile.data:
                 st.session_state["role"] = profile.data["role"]
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("User profile not found.")
     except Exception as e:
