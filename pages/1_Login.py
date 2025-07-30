@@ -1,3 +1,21 @@
+import streamlit as st
+import sys, os
+from supabase_client import get_supabase_client
+
+with st.sidebar:
+    st.title("⚽ VScor")
+    if "user" in st.session_state:
+        st.write(f"Logged in as: {st.session_state['user'].email}")
+        menu = st.radio("Navigation", ["Admin Dashboard", "Match Scoring", "Logout"])
+        if menu == "Admin Dashboard":
+            st.switch_page("pages/2_Admin_Dashboard.py")
+        elif menu == "Match Scoring":
+            st.switch_page("pages/3_Scoring.py")
+        elif menu == "Logout":
+            st.session_state.clear()
+            st.rerun()
+    else:
+        st.info("Please log in first.")
 
 with st.sidebar:
     st.title("⚽ VScor")
@@ -15,10 +33,7 @@ with st.sidebar:
         st.info("Please log in first.")
 
 
-import streamlit as st
-import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from supabase_client import get_supabase_client
 
 supabase = get_supabase_client()
 
