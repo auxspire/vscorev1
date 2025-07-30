@@ -1,5 +1,9 @@
 
 import streamlit as st
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 from supabase_client import get_supabase_client
 
 supabase = get_supabase_client()
